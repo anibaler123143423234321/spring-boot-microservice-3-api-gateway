@@ -17,4 +17,6 @@ public interface UserService {
     void changeRole(Role newRole, String username);
 
     User findByUsernameReturnToken(String username);
+
+    User findUserById(Long userId);
 }

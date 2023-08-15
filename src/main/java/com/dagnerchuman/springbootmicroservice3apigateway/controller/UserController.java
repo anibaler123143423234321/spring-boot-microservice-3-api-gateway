@@ -4,6 +4,7 @@ import com.dagnerchuman.springbootmicroservice3apigateway.model.Role;
 import com.dagnerchuman.springbootmicroservice3apigateway.model.User;
 import com.dagnerchuman.springbootmicroservice3apigateway.security.UserPrincipal;
 import com.dagnerchuman.springbootmicroservice3apigateway.service.UserService;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,4 +37,20 @@ public class UserController {
     {
         return new ResponseEntity<>(userService.findByUsernameReturnToken(userPrincipal.getUsername()), HttpStatus.OK);
     }
+
+    // http://locahost:5555/gateway/usuario/{userId}
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getUsuarioById(@PathVariable Long userId) {
+        try {
+            User usuario = userService.findUserById(userId);
+            if (usuario != null) {
+                return ResponseEntity.ok(usuario);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }

@@ -22,4 +22,6 @@ public interface ProductoServiceRequest {
     @GetMapping()
     List<Object> getAllProductos();
 
+    @GetMapping("{productoId}")
+    Object getProductoById(@PathVariable("productoId") Long productoId);
 }

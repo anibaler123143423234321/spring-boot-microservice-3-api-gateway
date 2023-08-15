@@ -1,8 +1,10 @@
 package com.dagnerchuman.springbootmicroservice3apigateway.controller;
 
 import com.dagnerchuman.springbootmicroservice3apigateway.request.ProductoServiceRequest;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,4 +35,14 @@ public class ProductoController {
     }
 
 
+
+    @GetMapping("{productoId}")
+    public ResponseEntity<?> getProductoById(@PathVariable Long productoId) {
+        try {
+            Object producto = productoServiceRequest.getProductoById(productoId);
+            return ResponseEntity.ok(producto);
+        } catch (FeignException.NotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
