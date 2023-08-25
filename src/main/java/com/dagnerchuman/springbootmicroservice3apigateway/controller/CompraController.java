@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("gateway/compra")
+@CrossOrigin(origins = "http://localhost:5200") // Esto permite solicitudes desde http://localhost:5200
 public class CompraController {
 
     @Autowired
@@ -27,4 +28,8 @@ public class CompraController {
         return ResponseEntity.ok(compraServiceRequest.getAllComprasOfUser(userPrincipal.getId()));
     }
 
+    @PutMapping("{compraId}")
+    public ResponseEntity<?> updateCompra(@PathVariable Long compraId, @RequestBody Object compra) {
+        return ResponseEntity.ok(compraServiceRequest.updateCompra(compraId, compra));
+    }
 }

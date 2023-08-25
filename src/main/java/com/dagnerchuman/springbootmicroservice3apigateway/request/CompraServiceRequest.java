@@ -1,10 +1,7 @@
 package com.dagnerchuman.springbootmicroservice3apigateway.request;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +19,9 @@ public interface CompraServiceRequest {
     @GetMapping("{userId}")
     List<Object> getAllComprasOfUser(@PathVariable("userId") Long userId);
 
+    @PutMapping("{compraId}")
+    Object updateCompra(
+            @PathVariable("compraId") Long compraId,
+            @RequestBody Object compra
+    );
 }
