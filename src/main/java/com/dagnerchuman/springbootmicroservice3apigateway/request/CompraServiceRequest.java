@@ -24,4 +24,7 @@ public interface CompraServiceRequest {
             @PathVariable("compraId") Long compraId,
             @RequestBody Object compra
     );
+    // Agrega este nuevo método para listar todas las compras
+    @GetMapping("/all")
+    List<Object> getAllCompras();
 }

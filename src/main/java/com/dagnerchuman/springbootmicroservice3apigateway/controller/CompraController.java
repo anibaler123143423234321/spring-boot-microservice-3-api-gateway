@@ -32,4 +32,12 @@ public class CompraController {
     public ResponseEntity<?> updateCompra(@PathVariable Long compraId, @RequestBody Object compra) {
         return ResponseEntity.ok(compraServiceRequest.updateCompra(compraId, compra));
     }
+
+    // Agrega este nuevo método para listar todas las compras
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllCompras() {
+        return ResponseEntity.ok(compraServiceRequest.getAllCompras());
+    }
+
+
 }

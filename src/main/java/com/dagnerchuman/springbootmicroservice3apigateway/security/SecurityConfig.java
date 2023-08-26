@@ -56,7 +56,7 @@ public class SecurityConfig{
 
 
         http.authorizeHttpRequests()
-                .antMatchers("/api/authentication/sign-in", "/api/authentication/sign-up", "/api/user/listar").permitAll()
+                .antMatchers("/api/authentication/sign-in", "/api/authentication/sign-up", "/api/user/listar","/gateway/compra/all").permitAll()
                 .antMatchers(HttpMethod.GET, "/gateway/producto").permitAll()
                 .antMatchers(HttpMethod.PUT, "/gateway/compra").permitAll()
                 .antMatchers("/gateway/producto/**").hasRole(Role.ADMIN.name())
