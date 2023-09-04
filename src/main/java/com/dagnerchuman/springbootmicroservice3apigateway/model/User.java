@@ -42,4 +42,8 @@ public class User {
     @Transient
     private String token;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "negocio_id")
+    private Negocio negocio;
+
 }

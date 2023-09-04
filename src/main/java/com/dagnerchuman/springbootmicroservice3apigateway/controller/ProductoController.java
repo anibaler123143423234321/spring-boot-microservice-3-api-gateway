@@ -45,4 +45,12 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    // Nuevo endpoint para eliminar todos los productos
+    @DeleteMapping("/eliminar-todos")
+    public ResponseEntity<?> deleteAllProductos() {
+        productoServiceRequest.deleteAllProductos();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

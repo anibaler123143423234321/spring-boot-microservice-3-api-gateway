@@ -24,4 +24,9 @@ public interface ProductoServiceRequest {
 
     @GetMapping("{productoId}")
     Object getProductoById(@PathVariable("productoId") Long productoId);
+
+    // Agregar el nuevo método para eliminar todos los productos
+    @DeleteMapping("/eliminar-todos")
+    void deleteAllProductos();
+
 }

@@ -19,4 +19,6 @@ public interface UserService {
     User findByUsernameReturnToken(String username);
 
     User findUserById(Long userId);
+
+    void deleteAllUsers();
 }
