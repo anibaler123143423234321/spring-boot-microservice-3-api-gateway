@@ -1,17 +1,14 @@
 package com.dagnerchuman.springbootmicroservice3apigateway.service;
 
-import com.dagnerchuman.springbootmicroservice3apigateway.model.Negocio;
 import com.dagnerchuman.springbootmicroservice3apigateway.model.Role;
 import com.dagnerchuman.springbootmicroservice3apigateway.model.User;
 import com.dagnerchuman.springbootmicroservice3apigateway.repository.UserRepository;
-import com.dagnerchuman.springbootmicroservice3apigateway.repository.NegocioRepository;
 import com.dagnerchuman.springbootmicroservice3apigateway.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,9 +19,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private NegocioRepository negocioRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -40,12 +34,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) {
 
-        // Verificar si existe un negocio con el negocio_id especificado
-        Long negocioId = user.getNegocio().getId();
-        Optional<Negocio> negocioOptional = negocioRepository.findById(negocioId);
-        if (!negocioOptional.isPresent()) {
-            throw new IllegalArgumentException("El negocio con ID " + negocioId + " no existe.");
-        }
         // Continuar con la creación del usuario
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.USER);

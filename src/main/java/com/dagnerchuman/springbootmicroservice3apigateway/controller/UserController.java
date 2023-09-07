@@ -4,14 +4,12 @@ import com.dagnerchuman.springbootmicroservice3apigateway.model.Role;
 import com.dagnerchuman.springbootmicroservice3apigateway.model.User;
 import com.dagnerchuman.springbootmicroservice3apigateway.security.UserPrincipal;
 import com.dagnerchuman.springbootmicroservice3apigateway.service.UserService;
-import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -20,18 +18,37 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+
     @GetMapping("listar")
     public List<User> listUsers() {
         return userService.findAllUsers();
     }
 
-    @PutMapping("change/{role}")
-    public ResponseEntity<?> changeRole(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable Role role)
-    {
-        userService.changeRole(role, userPrincipal.getUsername());
 
-        return ResponseEntity.ok(true);
+    @PutMapping("change/{role}")
+    public ResponseEntity<?> changeRole(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable Role role) {
+        User user = userService.findByUsername(userPrincipal.getUsername()).orElse(null);
+
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        if (role == Role.SUPERADMIN && user.getRole() == Role.ADMIN) {
+            // Actualiza el rol a SUPERADMIN si es un ADMIN
+            userService.changeRole(Role.SUPERADMIN, userPrincipal.getUsername());
+            return ResponseEntity.ok(true);
+        } else {
+            // Maneja otros cambios de roles aquí si es necesario
+            userService.changeRole(role, userPrincipal.getUsername());
+            return ResponseEntity.ok(true);
+        }
     }
+
 
     @GetMapping()
     public ResponseEntity<?> getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal)
@@ -60,5 +77,6 @@ public class UserController {
         userService.deleteAllUsers();
         return ResponseEntity.ok("Todos los usuarios han sido eliminados.");
     }
+
 
 }
