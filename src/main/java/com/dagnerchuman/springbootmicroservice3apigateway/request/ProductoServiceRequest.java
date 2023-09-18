@@ -29,4 +29,11 @@ public interface ProductoServiceRequest {
     @DeleteMapping("/eliminar-todos")
     void deleteAllProductos();
 
+    // Agregar el nuevo método para obtener los siguientes productos
+    @GetMapping("/siguientes")
+    List<Object> getSiguientesProductos(
+            @RequestParam("posicion") int posicion,
+            @RequestParam("cantidad") int cantidad
+    );
+
 }

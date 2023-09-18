@@ -52,4 +52,18 @@ public class ProductoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    // Nuevo endpoint para obtener productos según la posición y la cantidad
+    @GetMapping("/siguientes")
+    public ResponseEntity<?> getSiguientesProductos(
+            @RequestParam("posicion") int posicion,
+            @RequestParam("cantidad") int cantidad
+    ) {
+        try {
+            Object productos = productoServiceRequest.getSiguientesProductos(posicion, cantidad);
+            return ResponseEntity.ok(productos);
+        } catch (FeignException.NotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
 }
