@@ -10,6 +10,7 @@ public interface UserService {
     List<User> findAllUsers();
     User saveUser(User user);
 
+
     Optional<User> findByUsername(String username);
 
     Optional<User> findByEmail(String email);
@@ -21,4 +22,8 @@ public interface UserService {
     User findUserById(Long userId);
 
     void deleteAllUsers();
+
+
+    void deleteUserByUsername(String username); // Agrega este método
+
 }

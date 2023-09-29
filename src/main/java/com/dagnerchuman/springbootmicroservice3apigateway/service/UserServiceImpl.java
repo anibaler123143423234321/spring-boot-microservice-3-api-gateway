@@ -44,6 +44,8 @@ public class UserServiceImpl implements UserService {
         return userCreated;
 
     }
+
+
     @Override
     public Optional<User> findByUsername(String username)
     {
@@ -85,6 +87,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteAllUsers() {
         userRepository.deleteAll();
+    }
+
+    @Override
+    public void deleteUserByUsername(String username) {
+        // Lógica para eliminar el usuario por nombre de usuario
+        userRepository.findByUsername(username).ifPresent(userRepository::delete);
     }
 
 }
