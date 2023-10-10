@@ -62,6 +62,7 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.GET, "/gateway/categoria").permitAll()
                 .antMatchers(HttpMethod.POST, "/gateway/compra").permitAll()
                 .antMatchers(HttpMethod.PUT, "/gateway/compra").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/user/change/{role}").permitAll()
                 .antMatchers(HttpMethod.PUT, "/gateway/producto/{productoId}").hasAnyRole(Role.ADMIN.name(), Role.SUPERADMIN.name())
                 .antMatchers("/gateway/negocios/**").hasRole(Role.SUPERADMIN.name())
                 .antMatchers("/gateway/producto/**").hasAnyRole(Role.ADMIN.name(), Role.SUPERADMIN.name())
