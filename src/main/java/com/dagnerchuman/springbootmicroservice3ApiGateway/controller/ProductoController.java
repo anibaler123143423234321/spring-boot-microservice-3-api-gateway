@@ -69,8 +69,8 @@ public class ProductoController {
         }
     }
 
-    // Nuevo método para actualizar un producto
-    @PutMapping("/{productoId}")
+
+    @PutMapping("{productoId}")
     public ResponseEntity<?> actualizarProducto(@PathVariable("productoId") Long productoId, @RequestBody Object nuevoProducto) {
         try {
             Object productoActualizado = productoServiceRequest.actualizarProducto(productoId, nuevoProducto);

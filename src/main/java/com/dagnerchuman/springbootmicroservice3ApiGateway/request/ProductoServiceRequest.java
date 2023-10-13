@@ -37,11 +37,11 @@ public interface ProductoServiceRequest {
     );
 
     // Nuevo método para actualizar un producto
-    @PutMapping("/{productoId}")
+
+    @PutMapping("{productoId}")
     Object actualizarProducto(
             @PathVariable("productoId") Long productoId,
             @RequestBody Object nuevoProducto
     );
 
-    // Agregar el nuevo método para buscar productos por nombre
 }

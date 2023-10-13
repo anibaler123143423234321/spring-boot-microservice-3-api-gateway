@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5200") // Esto permite solicitudes desde http://localhost:5200
 @RequestMapping("api/user")
 public class UserController {
     @Autowired
