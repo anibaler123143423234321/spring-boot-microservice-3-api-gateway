@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.dagnerchuman.springbootmicroservice3ApiGateway.SpringBootMicroservice3ApiGatewayApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.628 s - in com.dagnerchuman.springbootmicroservice3ApiGateway.SpringBootMicroservice3ApiGatewayApplicationTests
