@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("gateway/producto")
-@CrossOrigin(origins = "http://localhost:5200") // Esto permite solicitudes desde http://localhost:5200
+@CrossOrigin(origins = "http://api-gateway:5200") // Esto permite solicitudes desde http://localhost:5200
 public class ProductoController {
 
     @Autowired

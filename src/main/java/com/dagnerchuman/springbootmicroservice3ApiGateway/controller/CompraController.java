@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("gateway/compra")
-@CrossOrigin(origins = "http://localhost:5200") // Esto permite solicitudes desde http://localhost:5200
+@CrossOrigin(origins = "http://api-gateway:5200") // Esto permite solicitudes desde http://localhost:5200
 public class CompraController {
 
     @Autowired

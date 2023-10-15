@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5200") // Esto permite solicitudes desde http://localhost:5200
+@CrossOrigin(origins = "http://api-gateway:5200") // Esto permite solicitudes desde http://localhost:5200
 @RequestMapping("api/user")
 public class UserController {
     @Autowired
@@ -79,5 +79,18 @@ public class UserController {
         return ResponseEntity.ok("Todos los usuarios han sido eliminados.");
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
+        try {
+            User updatedUser = userService.updateUser(id, user);
+            if (updatedUser != null) {
+                return ResponseEntity.ok(updatedUser);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el user: " + e.getMessage());
+        }
+    }
 
 }

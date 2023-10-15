@@ -95,4 +95,18 @@ public class UserServiceImpl implements UserService {
         userRepository.findByUsername(username).ifPresent(userRepository::delete);
     }
 
+    @Override
+    public User updateUser(Long id, User user) {
+        Optional<User> existingUser = userRepository.findById(id);
+
+        if (existingUser.isPresent()) {
+            User updatedUser = existingUser.get();
+            updatedUser.setRole(user.getRole());
+            return userRepository.save(updatedUser);
+        } else {
+            return null; // La compra no existe
+        }
+    }
+
+
 }

@@ -3,10 +3,8 @@ package com.dagnerchuman.springbootmicroservice3ApiGateway.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import java.util.regex.Pattern;
+
 import java.time.LocalDateTime;
 
 @Data
@@ -49,11 +47,24 @@ public class User {
     @Column(name = "negocio", nullable = false)
     private Long negocioId;
 
+    @Column(name="tipoDoc", nullable = false)
+    private String tipoDoc;
+
     @Column(name = "dni", nullable = false)
-    @Pattern(regexp = "\\d{8}", message = "DNI must be an 8-digit number")
     private String dni;
+
 
     @Column(name="foto", length = 1200, nullable = true )
     private String picture;
+
+    @Column(name="departamento", nullable = false)
+    private String departamento;
+
+    @Column(name="provincia", nullable = false)
+    private String provincia;
+
+    @Column(name="distrito", nullable = false)
+    private String distrito;
+
 
 }

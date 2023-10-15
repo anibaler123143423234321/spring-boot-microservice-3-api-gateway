@@ -6,6 +6,7 @@ import com.dagnerchuman.springbootmicroservice3ApiGateway.model.User;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface UserService {
     List<User> findAllUsers();
     User saveUser(User user);
@@ -26,4 +27,5 @@ public interface UserService {
 
     void deleteUserByUsername(String username); // Agrega este método
 
+    User updateUser(Long id, User user);
 }
