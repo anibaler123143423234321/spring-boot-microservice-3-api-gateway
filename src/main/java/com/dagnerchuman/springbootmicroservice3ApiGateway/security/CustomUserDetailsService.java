@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Set;
 
 @Service
@@ -26,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow( () -> new UsernameNotFoundException("El usuario no fue encontrado:"+username));
 
 
-        Set<GrantedAuthority> authorities = Set.of(SecurityUtils.convertToAuthority(user.getRole().name()));
+        Set<GrantedAuthority> authorities = Collections.singleton(SecurityUtils.convertToAuthority(user.getRole().name()));
 
 
        return UserPrincipal.builder()
