@@ -7,8 +7,8 @@ import java.util.List;
 
 @FeignClient(
         value="negocio-service",
-        path="api/negocios",
-        //url="${compras.service.url}",
+        //path="api/negocios",
+        url="${compras.service.url}",
         configuration = FeignConfiguration.class
 )
 public interface NegocioServiceRequest {
