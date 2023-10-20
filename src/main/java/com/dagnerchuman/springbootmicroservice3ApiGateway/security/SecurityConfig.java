@@ -56,20 +56,20 @@ public class SecurityConfig{
 
 
         http.authorizeHttpRequests()
-                .antMatchers("/api/authentication/sign-in", "/api/authentication/sign-up", "gateway/producto/siguientes").permitAll()
-                .antMatchers(HttpMethod.GET, "/gateway/producto").permitAll()
-                .antMatchers(HttpMethod.GET, "/gateway/compra").permitAll()
-                .antMatchers(HttpMethod.GET, "/gateway/compra/all").permitAll()
+                .antMatchers("/api/authentication/sign-in", "/api/authentication/sign-up", "gateway/producto/siguientes", "/reniec/getPersonInfoByDNI").permitAll()
+                .antMatchers(HttpMethod.GET, "/gateway/producto/all").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                .antMatchers(HttpMethod.GET, "/gateway/compra").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                .antMatchers(HttpMethod.GET, "/gateway/compra/all").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
                 .antMatchers(HttpMethod.GET, "/gateway/negocios/").permitAll()
-                .antMatchers(HttpMethod.GET, "/gateway/categoria").permitAll()
-                .antMatchers(HttpMethod.GET, "/gateway/producto/{productoId}").permitAll()
-                .antMatchers(HttpMethod.POST, "/gateway/compra").permitAll()
-                .antMatchers(HttpMethod.PUT, "/gateway/compra").permitAll()
-                .antMatchers(HttpMethod.PUT, "/gateway/producto/{productoId}").permitAll()
-                .antMatchers(HttpMethod.GET, "/gateway/negocios/{productoId}").permitAll()
-                // .antMatchers("/gateway/producto/**").hasAnyRole(Role.ADMIN.name(), Role.SUPERADMIN.name())
-                .antMatchers(HttpMethod.PUT, "/api/user/{id}").permitAll()
-                .antMatchers("/gateway/categoria/**").hasAnyRole(Role.ADMIN.name(), Role.SUPERADMIN.name())
+                .antMatchers(HttpMethod.GET, "/gateway/categoria").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                .antMatchers(HttpMethod.GET, "/gateway/producto/{productoId}").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                .antMatchers(HttpMethod.POST, "/gateway/compra").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                .antMatchers(HttpMethod.PUT, "/gateway/compra").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                //.antMatchers(HttpMethod.PUT, "/gateway/producto/{productoId}").permitAll()
+                //.antMatchers(HttpMethod.GET, "/gateway/negocios/{productoId}").permitAll()
+                .antMatchers("/gateway/producto/**").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                //.antMatchers(HttpMethod.PUT, "/api/user/{id}").permitAll()
+                .antMatchers("/gateway/categoria/**").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
