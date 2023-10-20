@@ -6,8 +6,8 @@ import java.util.List;
 
 @FeignClient(
         value = "categoria-service", // Nombre del servicio de categoría
-        path = "/api/categoria", // Ruta del servicio de categoría
-        //url="${categoria.service.url}",
+        //path = "/api/categoria", // Ruta del servicio de categoría
+        url="${categoria.service.url}",
         configuration = FeignConfiguration.class
 )
 public interface CategoriaServiceRequest {
