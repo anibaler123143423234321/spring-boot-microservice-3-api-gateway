@@ -22,7 +22,7 @@ public class User {
     @Column(name="password", nullable = false)
     private String password;
 
-    @Column(name="nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
 
     @Column(name="apellido", nullable = false)
@@ -31,7 +31,7 @@ public class User {
     @Column(name="telefono", nullable = false)
     private String telefono;
 
-    @Column(name="email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name="fecha_creacion", nullable = false)
@@ -50,7 +50,7 @@ public class User {
     @Column(name="tipoDoc", nullable = false)
     private String tipoDoc;
 
-    @Column(name = "dni", nullable = false)
+    @Column(name = "dni", nullable = false, unique = true)
     private String dni;
 
 
