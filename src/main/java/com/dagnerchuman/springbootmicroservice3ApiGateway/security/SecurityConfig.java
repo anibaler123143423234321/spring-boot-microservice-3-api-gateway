@@ -63,7 +63,8 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.PUT, "/gateway/{compraId}").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
 
 
-                .antMatchers(HttpMethod.GET, "/gateway/negocios/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/gateway/negocios/").permitAll()
+                .antMatchers(HttpMethod.GET, "/gateway/negocios/{id}").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
                 .antMatchers(HttpMethod.POST, "/gateway/negocios/").hasAnyRole(Role.ADMIN.name(), Role.SUPERADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/gateway/negocios/{id}").hasAnyRole(Role.ADMIN.name(), Role.SUPERADMIN.name())
 
@@ -79,6 +80,8 @@ public class SecurityConfig{
 
 
                 .antMatchers(HttpMethod.GET, "/gateway/categoria}").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+                .antMatchers(HttpMethod.GET, "/gateway/categoria/}").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
+
                 .antMatchers(HttpMethod.POST, "/gateway/categoria/}").hasAnyRole(Role.ADMIN.name(), Role.SUPERADMIN.name())
                 .antMatchers(HttpMethod.GET, "/gateway/categoria/{categoriaId}}").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/gateway/categoria/{categoriaId}}").hasAnyRole(Role.USER.name(),Role.ADMIN.name(), Role.SUPERADMIN.name())
